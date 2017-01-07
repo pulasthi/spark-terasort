@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.github.ehiggs.spark.terasort
+  package com.github.ehiggs.spark.terasort
 
 import com.google.common.primitives.UnsignedBytes
 import org.apache.spark.SparkContext._
@@ -61,6 +61,8 @@ object TeraSort {
     val startTimeAfterInit = System.currentTimeMillis();
 
     val dataset = sc.newAPIHadoopFile[Array[Byte], Array[Byte], TeraInputFormat](inputFile)
+    println("+++++++++++++++++++++++++++++++++++++++++++" + dataset.partitions.size);
+
     val sorted = dataset.partitionBy(new TeraSortPartitioner(dataset.partitions.size)).sortByKey()
     sorted.saveAsNewAPIHadoopFile[TeraOutputFormat](outputFile)
 
