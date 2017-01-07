@@ -64,6 +64,8 @@ object TeraSort {
     println("+++++++++++++++++++++++++++++++++++++++++++" + dataset.partitions.size);
 
     val sorted = dataset.partitionBy(new TeraSortPartitioner(dataset.partitions.size)).sortByKey()
+    println("+++++++++++++++++++++++++++++++++++++++++++" + sorted.partitions);
+
     sorted.saveAsNewAPIHadoopFile[TeraOutputFormat](outputFile)
 
     val endTime = System.currentTimeMillis();
