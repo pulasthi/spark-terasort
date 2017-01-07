@@ -68,7 +68,10 @@ object TeraSort {
     println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    print("Time with init" + (endTime - startTime) );
-    print("Time with without init" + (endTime - startTimeAfterInit) );
+    println("Time with init" + (endTime - startTime) );
+    println("Time with without init" + (endTime - startTimeAfterInit) );
+    println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
   }
 }
