@@ -48,6 +48,7 @@ object TeraSort {
       System.exit(0)
     }
 
+    val startTime = System.currentTimeMillis();
     // Process command line arguments
     val inputFile = args(0)
     val outputFile = args(1)
@@ -57,8 +58,17 @@ object TeraSort {
       .setAppName(s"TeraSort")
     val sc = new SparkContext(conf)
 
+    val startTimeAfterInit = System.currentTimeMillis();
+
     val dataset = sc.newAPIHadoopFile[Array[Byte], Array[Byte], TeraInputFormat](inputFile)
     val sorted = dataset.partitionBy(new TeraSortPartitioner(dataset.partitions.size)).sortByKey()
     sorted.saveAsNewAPIHadoopFile[TeraOutputFormat](outputFile)
+
+    val endTime = System.currentTimeMillis();
+    println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print("Time with init" + (endTime - startTime) );
+    print("Time with without init" + (endTime - startTimeAfterInit) );
   }
 }
